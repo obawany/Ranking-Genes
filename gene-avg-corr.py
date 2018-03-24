@@ -7,9 +7,14 @@ import math
 f = open("/Users/obawany/Downloads/GDC_Downloads/PTEN_combined.txt", "r")
 g = open("/Users/obawany/Downloads/GDC_Downloads/PTEN_combined..fixed.txt", "w")
 
-for line in f:
-    if line.strip():
-        g.write("\t".join(line.split()[1:]) + "\n")
+g.write("Gene-ensemble \t \taverage_corr \n\n")
 
+for line in f:
+	if line[0] == 'E':
+		gene_name = line.split("\t")[0]
+		# for column in columns:
+		average_corr = line.split("\t")[50]
+		line = gene_name + "\t" + average_corr
+		g.write(line + "\n")
 f.close()
 g.close()
